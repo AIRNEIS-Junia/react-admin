@@ -4,9 +4,9 @@ import {
 } from "react-admin";
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
-import {EditProduct, ProductList, ProductShow, CreateProduct} from "./products";
-import {UserEdit, UserList} from "./user";
-import {CategoryEdit, CategoryList} from "./categories";
+import {EditProduct, ProductList, CreateProduct} from "./products";
+import {UserList, CreateUser} from "./user";
+import {CategoryList} from "./categories";
 import {CheckoutList} from "./checkout";
 
 export const App = () => (
@@ -26,9 +26,10 @@ export const App = () => (
               label: "Users"
           }}
           list={UserList}
+          create={CreateUser}
       >
       </Resource>
       <Resource name="products/admin/list/categories" options={{label: "Categories"}} list={CategoryList}/>
-      <Resource name="checkout/admin/list" options={{label: "Checkout"}} list={CheckoutList}/>
+      <Resource name="orders/admin" options={{label: "Orders"}} create={CheckoutList}/>
   </Admin>
 );

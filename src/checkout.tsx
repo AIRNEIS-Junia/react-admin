@@ -36,3 +36,18 @@ export const CheckoutList = (props: any) => (
         </Datagrid>
     </List>
 );
+
+export const CreateCheckout = (props: any) => (
+    <Create {...props}>
+        <SimpleForm>
+            <TextInput source="name" />
+            <NumberInput source="price" />
+            <NumberInput source="quantity" />
+            <ReferenceArrayInput source="user" reference="user/admin">
+                <SelectArrayInput source="user" />
+            </ReferenceArrayInput>
+            <ImageInput source="images" />
+        </SimpleForm>
+    </Create>
+
+);
