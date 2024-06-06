@@ -1,9 +1,8 @@
-import { List, Datagrid, TextField, DateField, Show, SimpleShowLayout } from 'react-admin';
+import { List, Datagrid, TextField, DateField, EditGuesser } from 'react-admin';
 
 export const UserList = (props: any) => (
     <List {...props}>
-        <Datagrid>
-            <TextField source="id" />
+        <Datagrid rowClick="edit">
             <TextField source="firstName" />
             <TextField source="lastName" />
             <TextField source="role" />
@@ -13,15 +12,14 @@ export const UserList = (props: any) => (
     </List>
 );
 
-export const UserShow = (props: any) => (
-    <Show {...props}>
-        <SimpleShowLayout>
-            <TextField source="id" />
-            <TextField source="email" />
-            <TextField source="name" />
+export const UserEdit = (props: any) => (
+    <EditGuesser {...props}>
+        <Datagrid>
+            <TextField source="firstName" />
+            <TextField source="lastName" />
             <TextField source="role" />
             <DateField source="createdAt" />
             <DateField source="updatedAt" />
-        </SimpleShowLayout>
-    </Show>
+        </Datagrid>
+    </EditGuesser>
 );

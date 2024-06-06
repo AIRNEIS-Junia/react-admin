@@ -5,28 +5,30 @@ import {
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
 import {EditProduct, ProductList, ProductShow, CreateProduct} from "./products";
-import {UserList, UserShow} from "./user";
+import {UserEdit, UserList} from "./user";
+import {CategoryEdit, CategoryList} from "./categories";
+import {CheckoutList} from "./checkout";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>
     <Resource
-      name="products"
+      name="products/admin"
       options={{
           label: "Products"
       }}
-      show={ProductShow}
-      create={CreateProduct}
       list={ProductList}
       edit={EditProduct}
+      create={CreateProduct}
     />
       <Resource
-          name="user"
+          name="user/admin"
           options={{
               label: "Users"
           }}
-          show={UserShow}
           list={UserList}
-
-      />
+      >
+      </Resource>
+      <Resource name="products/admin/list/categories" options={{label: "Categories"}} list={CategoryList}/>
+      <Resource name="checkout/admin/list" options={{label: "Checkout"}} list={CheckoutList}/>
   </Admin>
 );

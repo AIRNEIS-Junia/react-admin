@@ -6,26 +6,38 @@ import {
     TextInput,
     List,
     NumberField,
-    ReferenceField,
+    ArrayField,
     TextField,
+    Edit,
+    ReferenceArrayField,
+    Create,
+    SimpleForm,
+    ImageInput,
+    NumberInput,
+    ImageField,
+    SelectField,
     EditGuesser,
-    Create, SimpleForm, ImageInput, NumberInput
+    ReferenceManyField,
+    ReferenceArrayInput, EditButton, DeleteButton, SelectArrayInput
 } from 'react-admin';
 
 export const ProductList = (props: any) => (
     <List {...props}>
-        <Datagrid rowClick="edit">
-            <TextField source="id" />
+        <Datagrid>
             <TextField source="name" />
-            <TextField source="description" />
-            <TextField source="images" />
+            {/*<TextField source="description" />*/}
+            {/*<ImageField source="images" />*/}
             <NumberField source="price" />
             <NumberField source="quantity" />
-            <ReferenceField source="categoryId" reference="products/categories">
+            <ReferenceArrayField source="category" reference="products/categories">
                 <TextField source="name" />
-            </ReferenceField>
+            </ReferenceArrayField>
             <DateField source="createdAt" />
             <DateField source="updatedAt" />
+            <>
+                <EditButton />
+                <DeleteButton />
+            </>
         </Datagrid>
     </List>
 );
@@ -39,7 +51,9 @@ export const ProductShow = (props: any) => (
             <TextField source="images" />
             <NumberField source="price" />
             <NumberField source="quantity" />
-            <ReferenceField source="categoryId" reference="products.categories" />
+            <ReferenceArrayField source="category" reference="products/categories">
+                <TextField source="name" />
+            </ReferenceArrayField>
             <DateField source="createdAt" />
             <DateField source="updatedAt" />
         </SimpleShowLayout>
@@ -52,12 +66,12 @@ export const EditProduct = (props: any) => (
             <TextField source="id" />
             <TextField source="name" />
             <TextField source="description" />
-            <TextField source="images" />
+            <ImageField source="images" />
             <NumberField source="price" />
             <NumberField source="quantity" />
-            <ReferenceField source="categoryId" reference="products/categories">
-                <TextField source="name" />
-            </ReferenceField>
+            <ReferenceArrayInput source="categoryId" reference="list/categories">
+                <TextInput source="name" />
+            </ReferenceArrayInput>
             <DateField source="createdAt" />
             <DateField source="updatedAt" />
         </Datagrid>
@@ -72,9 +86,9 @@ export const CreateProduct = (props: any) => (
             <ImageInput source="images" />
             <NumberInput source="price" />
             <NumberInput source="quantity" />
-            <ReferenceField source="categoryId" reference="products/categories">
-                <TextField source="name" />
-            </ReferenceField>
+            <ReferenceArrayField source="category" reference="categories">
+                <SelectArrayInput source="name" />
+            </ReferenceArrayField>
         </SimpleForm>
     </Create>
 );
